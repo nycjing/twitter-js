@@ -2,6 +2,7 @@ const express = require( 'express' );
 const app = express(); // creates an instance of an express application
 const volleyball = require('volleyball');
 const nunjucks = require('nunjucks');
+const routes = require('./routes');
 
 
 var locals = {
@@ -32,9 +33,6 @@ app.engine('html', nunjucks.render); // when giving html files to res.render, te
 // nunjucks.configure('views'); // point nunjucks to the proper directory for templates
 
 nunjucks.configure('views', { noCache: true }); //Use for learning so no caching, saves time
-
-
-
 
 // SERVER CONFIGURATION
 
