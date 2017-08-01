@@ -1,4 +1,11 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
+var jsonParser = bodyParser.json();
+
+// create application/x-www-form-urlencoded parser
+var urlencodedParser = bodyParser.urlencoded({ extended: false });
+
 const router = express.Router();
 // could use one line instead: const router = require('express').Router();
 const tweetBank = require('../tweetBank');
@@ -11,13 +18,12 @@ router.get('/', function (req, res) {
 // say that a client GET requests the path /users/nimit
 router.get( '/users/:id', function (req, res) {
   var id = Number(req.params.id);
-  console.log(id, typeof id);
   var list = tweetBank.find( {id: id} );
   res.render( 'index', { list: list } );
 });
 
-router.post('/tweets', function(req, res) {
-  console.log(req.body);
+router.post('/tweets',urlencodedParser, function(req, res) {
+  console.log('what is the req.boday;',req.body);
   var name = req.body.name;
   var text = req.body.text;
   tweetBank.add(name, text);

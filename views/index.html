@@ -28,14 +28,17 @@
       {% endif %}
 
       {% for li in list %}
-      <p><li><img src="/twitter_user.png">{{li.name}}</a><br>
+      <p><li>
+      {{li.name}}</a><br>
       {{li.content}}</li>
       </p>
       {% endfor %}
 
       <!-- display tweets here -->
       {% for tweet in tweets %}
-      <p><li><img src="/twitter_user.png"><a href="/users/{{tweet.id}}">{{tweet.name}}</a><br>
+      <p><li>
+
+      <a href="/users/{{tweet.id}}">{{tweet.name}}</a><br>
         {{tweet.content}}</li>
       </p>
       {% endfor %}
