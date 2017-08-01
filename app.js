@@ -3,6 +3,7 @@ const app = express(); // creates an instance of an express application
 const volleyball = require('volleyball');
 const nunjucks = require('nunjucks');
 const routes = require('./routes');
+const bodyParser = require('body-parser')
 
 const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
 
@@ -29,6 +30,21 @@ app.use(function (req, res, next) {
     console.log("1");
     next();// call `next`, or else your app will be a black hole — receiving requests but never properly responding
 });
+
+
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// parse application/json
+app.use(bodyParser.json());
+
+app.use(function (req, res) {
+  res.setHeader('Content-Type', 'text/plain')
+  res.write('you posted:\n')
+  res.end(JSON.stringify(req.body, null, 2))
+});
+
+
 
 app.get('/', function (req, res) {
   res.render( 'index', {title: 'Hall of Fame', people: people} );

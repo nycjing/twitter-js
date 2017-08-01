@@ -5,7 +5,7 @@ const tweetBank = require('../tweetBank');
 
 router.get('/', function (req, res) {
   let tweets = tweetBank.list();
-  res.render( 'index', { tweets: tweets } );
+  res.render( 'index', { tweets: tweets, showForm: true});
 });
 
 // say that a client GET requests the path /users/nimit
@@ -16,5 +16,12 @@ router.get( '/users/:id', function (req, res) {
   res.render( 'index', { list: list } );
 });
 
+router.post('/tweets', function(req, res) {
+  console.log(req.body);
+  var name = req.body.name;
+  var text = req.body.text;
+  tweetBank.add(name, text);
+  res.redirect('/');
+});
+
 module.exports = router;
-  
