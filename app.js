@@ -1,5 +1,12 @@
 const express = require( 'express' );
 const app = express(); // creates an instance of an express application
+const volleyball = require('volleyball');
+const nunjucks = require('nunjucks');
+
+app.use(volleyball);
+
+nunjucks.configure('views', { autoescape: true });
+// nunjucks.render('index.html', { foo: 'bar' });
 
 app.use(function (req, res, next) {
     // do your logging here
