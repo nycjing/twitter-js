@@ -23,7 +23,6 @@ router.get( '/users/:id', function (req, res) {
 });
 
 router.post('/tweets',urlencodedParser, function(req, res) {
-  console.log('what is the req.boday;',req.body);
   var name = req.body.name;
   var text = req.body.text;
   tweetBank.add(name, text);
