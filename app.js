@@ -4,37 +4,24 @@ const volleyball = require('volleyball');
 const nunjucks = require('nunjucks');
 const routes = require('./routes');
 
-
-var locals = {
-    title: 'An Example',
-    people: [
-        { name: 'Gandalf'},
-        { name: 'Frodo' },
-        { name: 'Hermione'}
-    ]
-};
-
 const people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+
+app.use(express.static('public'));
 
 // APPS CONFIGURATION
 
 app.use(volleyball);
-
-/* OLD NUNJUCKS CODE
-nunjucks.configure('views', {noCache: true});
-nunjucks.render('index.html', locals, function (err, output) {
-    console.log(output);
-});
-*/
+app.use('/', routes);
 
 // "Nunjucks-Express Combo Meal <3 Merges Express and Nunjucks easily
 app.set('view engine', 'html'); // have res.render work with html files
 app.engine('html', nunjucks.render); // when giving html files to res.render, tell it to use nunjucks
 // nunjucks.configure('views'); // point nunjucks to the proper directory for templates
-
 nunjucks.configure('views', { noCache: true }); //Use for learning so no caching, saves time
 
-// SERVER CONFIGURATION
+
+
+// *** SERVER CONFIGURATION
 
 app.use(function (req, res, next) {
     // do your logging here
