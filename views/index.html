@@ -15,7 +15,7 @@
 
       <!-- display tweets here -->
       {% for tweet in tweets %}
-      <p><li><img src = "../public/stylesheets/twitter_user.png">{{tweet.name}}<br />
+      <p><li><img src="/twitter_user.png"><a href="/users/{{tweet.name}}">{{tweet.name}}</a><br>
         {{tweet.content}}</li>
       </p>
       {% endfor %}
