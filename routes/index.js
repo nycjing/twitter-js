@@ -19,7 +19,7 @@ router.get('/', function (req, res) {
 router.get( '/users/:id', function (req, res) {
   var id = Number(req.params.id);
   var list = tweetBank.find( {id: id} );
-  res.render( 'index', { list: list } );
+  res.render( 'index', { list: list, showFormSingleUser: true} );
 });
 
 router.post('/tweets',urlencodedParser, function(req, res) {

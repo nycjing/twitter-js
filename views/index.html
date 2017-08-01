@@ -18,21 +18,34 @@
       {% if showForm %}
         <form action="/tweets" method="POST">
           <label for="name_field">Name:</label>
-          <input name="name" type="text" id="name_field" />
+          <input name="name" value="Your name" type="text" id="name_field" />
 
           <label for="text_field">Text:</label>
-          <input name="text" value="This is some text" type="text" id="text_field" style="width: 350px;" />
+          <input name="text" type="text" id="text_field" style="width: 350px;" />
 
           <input type="submit" value="Submit" />
         </form>
       {% endif %}
 
-      {% for li in list %}
-      <p><li>
-      {{li.name}}</a><br>
-      {{li.content}}</li>
-      </p>
-      {% endfor %}
+
+      {% if showFormSingleUser %}
+        {% for li in list %}
+        <form action="/tweets" method="POST">
+          <label for="name_field">Name:</label>
+          <input name="name" value="{{li.name}}" type="text" id="name_field" />
+
+          <label for="text_field">Text:</label>
+          <input name="text" type="text" id="text_field" style="width: 350px;" />
+
+          <input type="submit" value="Submit" />
+        </form>
+
+        <p>
+          <li>{{li.name}}<br>{{li.content}}</li>
+        </p>
+
+        {% endfor %}
+      {% endif %}
 
       <!-- display tweets here -->
       {% for tweet in tweets %}
