@@ -9,9 +9,10 @@ router.get('/', function (req, res) {
 });
 
 // say that a client GET requests the path /users/nimit
-router.get( '/users/:name', function (req, res) {
-  var name = req.params.name;
-  var list = tweetBank.find( {name: name} );
+router.get( '/users/:id', function (req, res) {
+  var id = Number(req.params.id);
+  console.log(id, typeof id);
+  var list = tweetBank.find( {id: id} );
   res.render( 'index', { list: list } );
 });
 
